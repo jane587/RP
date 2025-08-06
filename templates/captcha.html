@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verification</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #f3f3f3;
+      font-family: Arial, sans-serif;
+      display: grid;
+      place-items: center;
+    }
+
+    .box {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 95%;
+      max-width: 430px;
+      padding: 35px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .title {
+      color: #217346;
+      font-size: 27px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .image-wrap {
+      margin-bottom: 22px;
+    }
+
+    .image-wrap img {
+      width: 100%;
+      border: 3px solid #217346;
+      border-radius: 7px;
+      padding: 9px;
+      display: block;
+    }
+
+    .form-area {
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+    }
+
+    .label {
+      font-weight: 600;
+      font-size: 15px;
+      color: #333;
+      text-align: left;
+    }
+
+    .text-input {
+      padding: 11px;
+      font-size: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border 0.2s ease;
+    }
+
+    .text-input:focus {
+      border-color: #217346;
+    }
+
+    .submit-btn {
+      background-color: #217346;
+      color: #fff;
+      padding: 12px;
+      font-size: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #1b5e3b;
+    }
+
+    .alert {
+      color: #d83b01;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="title">Enter the CAPTCHA Code</div>
+
+    <div class="image-wrap">
+      <img src="data:image/png;base64,{{ captcha_image }}" alt="CAPTCHA"/>
+    </div>
+
+    <form method="POST" action="/" class="form-area">
+      <label for="verify" class="label">Captcha Code:</label>
+      <input type="text" id="verify" name="code" class="text-input" required />
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    {% if error %}
+      <div class="alert">{{ message }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
